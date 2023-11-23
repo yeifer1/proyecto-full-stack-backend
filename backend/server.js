@@ -8,6 +8,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const cors = require("cors");
+app.movieRoutes
+
 // Conecta a la base de datos MongoDB (asegúrate de que tu conexión a MongoDB esté configurada en db.js)
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
