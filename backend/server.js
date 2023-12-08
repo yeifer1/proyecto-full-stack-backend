@@ -1,24 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors'); // Importa cors
 
-// Carga las variables de entorno desde el archivo .env
-dotenv.config();
+dotenv.config(); // Carga las variables de entorno desde el archivo .env
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const cors = require("cors");
-app.movieRoutes
+// Middleware para CORS
+app.use(cors());
 
-// Conecta a la base de datos MongoDB (asegúrate de que tu conexión a MongoDB esté configurada en db.js)
+// Conecta a la base de datos MongoDB
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 const db = mongoose.connection;
-
 db.on('error', (error) => console.error('Error de conexión a la base de datos:', error));
 db.once('open', () => console.log('Conexión exitosa a la base de datos'));
 
