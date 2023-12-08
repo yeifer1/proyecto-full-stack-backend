@@ -18,4 +18,7 @@ router.put('/users/:id', authenticate, usersController.updateUser);
 // Ruta para eliminar un usuario por su ID
 router.delete('/users/:id', authenticate, usersController.deleteUser);
 
+// Ruta para incrementar los likes de una película por su ID
+router.patch('/movies/:id/like', movieController.incrementLikes);
+
 module.exports = router;
