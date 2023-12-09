@@ -29,8 +29,8 @@ const createMovie = asyncHandler(async (req, res) => {
     } = req.body;
 
     if (!title || !director || !releaseYear) {
-        res.status(400);
-        throw new Error('Por favor completa los campos obligatorios');
+        res.status(400).json({ message: 'Por favor completa los campos obligatorios' });
+        return;
     }
 
     const movie = await Movie.create({
@@ -60,8 +60,8 @@ const updateMovie = asyncHandler(async (req, res) => {
     const movie = await Movie.findById(req.params.id);
 
     if (!movie) {
-        res.status(404);
-        throw new Error('La película no fue encontrada');
+        res.status(404).json({ message: 'La película no fue encontrada' });
+        return;
     }
 
     const updatedMovie = await Movie.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -73,8 +73,8 @@ const deleteMovie = asyncHandler(async (req, res) => {
     const movie = await Movie.findById(req.params.id);
 
     if (!movie) {
-        res.status(404);
-        throw new Error('La película no fue encontrada');
+        res.status(404).json({ message: 'La película no fue encontrada' });
+        return;
     }
 
     await movie.remove();
@@ -86,8 +86,8 @@ const incrementLikes = asyncHandler(async (req, res) => {
     const movie = await Movie.findById(req.params.id);
 
     if (!movie) {
-        res.status(404);
-        throw new Error('La película no fue encontrada');
+        res.status(404).json({ message: 'La película no fue encontrada' });
+        return;
     }
 
     movie.likes = (movie.likes || 0) + 1;
@@ -101,5 +101,5 @@ module.exports = {
     createMovie,
     updateMovie,
     deleteMovie,
-    incrementLikes  // Asegúrate de exportar esta función
+    incrementLikes
 };
