@@ -17,6 +17,9 @@ router.put('/movies/:id', movieController.updateMovie);
 
 // Ruta para eliminar una película por su ID
 router.delete('/movies/:id', movieController.deleteMovie);
+// Ruta para incrementar los 'likes' de una película por su ID
+router.patch('/movies/:id/like', movieController.incrementLikes);
+
 
 
 module.exports = router;
