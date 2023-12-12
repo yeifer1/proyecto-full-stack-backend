@@ -10,19 +10,15 @@ router.post('/movies', movieController.createMovie);
 router.get('/movies', movieController.getMovies);
 
 // Ruta para obtener una película por su ID
-router.get('/movies/:id', movieController.getMovieById); // Cambia esto para usar la función correcta
-
-// Ruta para obtener una película por su ID
-router.get('/movies/:id', movieController.getMovies);
+router.get('/movies/:id', movieController.getMovieById); // Esta es la ruta correcta para obtener una película por ID
 
 // Ruta para actualizar una película por su ID
 router.put('/movies/:id', movieController.updateMovie);
 
 // Ruta para eliminar una película por su ID
 router.delete('/movies/:id', movieController.deleteMovie);
+
 // Ruta para incrementar los 'likes' de una película por su ID
 router.patch('/movies/:id/like', movieController.incrementLikes);
 
-
-
-module.exports = router;
+module.exports = router; 

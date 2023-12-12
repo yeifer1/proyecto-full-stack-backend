@@ -13,6 +13,18 @@ const getMovieById = asyncHandler(async (req, res) => {
     res.status(200).json(movie);
 });
 
+// Obtener todas las películas
+const getMovies = asyncHandler(async (req, res) => {
+    try {
+        const movies = await Movie.find({});
+        res.status(200).json(movies);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al obtener las películas' });
+    }
+});
+
+
 // Crear una nueva película
 const createMovie = asyncHandler(async (req, res) => {
     const {
@@ -74,18 +86,21 @@ const updateMovie = asyncHandler(async (req, res) => {
     res.status(200).json(updatedMovie);
 });
 
-// Eliminar una película
 const deleteMovie = asyncHandler(async (req, res) => {
-    const movie = await Movie.findById(req.params.id);
+    try {
+        const result = await Movie.findByIdAndDelete(req.params.id);
 
-    if (!movie) {
-        res.status(404).json({ message: 'La película no fue encontrada' });
-        return;
+        if (!result) {
+            return res.status(404).json({ message: 'La película no fue encontrada' });
+        }
+
+        res.status(200).json({ id: req.params.id });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al eliminar la película' });
     }
-
-    await movie.remove();
-    res.status(200).json({ id: req.params.id });
 });
+
 
 // Incrementar los 'likes' de una película
 const incrementLikes = asyncHandler(async (req, res) => {
