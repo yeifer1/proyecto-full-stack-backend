@@ -1,10 +1,16 @@
 const asyncHandler = require('express-async-handler');
 const Movie = require('../models/peliculasModel');
 
-// Obtener todas las películas
-const getMovies = asyncHandler(async (req, res) => {
-    const movies = await Movie.find();
-    res.status(200).json(movies);
+// Obtener una película por su ID
+const getMovieById = asyncHandler(async (req, res) => {
+    const movie = await Movie.findById(req.params.id);
+
+    if (!movie) {
+        res.status(404).json({ message: 'La película no fue encontrada' });
+        return;
+    }
+
+    res.status(200).json(movie);
 });
 
 // Crear una nueva película
@@ -98,6 +104,7 @@ const incrementLikes = asyncHandler(async (req, res) => {
 
 module.exports = {
     getMovies,
+    getMovieById, // Agrega esta línea
     createMovie,
     updateMovie,
     deleteMovie,

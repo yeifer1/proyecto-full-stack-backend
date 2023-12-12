@@ -10,6 +10,9 @@ router.post('/movies', movieController.createMovie);
 router.get('/movies', movieController.getMovies);
 
 // Ruta para obtener una película por su ID
+router.get('/movies/:id', movieController.getMovieById); // Cambia esto para usar la función correcta
+
+// Ruta para obtener una película por su ID
 router.get('/movies/:id', movieController.getMovies);
 
 // Ruta para actualizar una película por su ID
