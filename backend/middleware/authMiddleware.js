@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-const User = require('../models/users.Models')
+const User = require('../models/usersModel')
 const protect =  async (req, res, next) => {
   let token
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
