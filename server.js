@@ -3,7 +3,7 @@ const dotenv = require('dotenv').config()
 const colors = require('colors')
 const cors = require('cors')
 const { errorHandler } = require('./backend/middleware/errorMiddleware')
-const connectDB = require('./config/db')
+const connectDB = require('./backend/config/db')
 const port = process.env.PORT || 3000
 connectDB()
 const app = express()
