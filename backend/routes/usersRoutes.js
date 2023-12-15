@@ -11,7 +11,7 @@ router.post('/users/register', usersController.createUser);
 router.post('/users/login', usersController.authenticateUser);
 
 // Ruta para obtener información de un usuario por su ID
-router.get('/users/:id', protect, authenticate, usersController.getUser);
+router.get('/users/me', protect, authenticate, usersController.getUser);
 
 // Ruta para actualizar un usuario por su ID
 router.put('/users/:id', authenticate, usersController.updateUser);
