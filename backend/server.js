@@ -32,8 +32,8 @@ app.use(express.json());
 const movieRoutes = require('./routes/peliculasRoutes');
 const userRoutes = require('./routes/usersRoutes');
 
-app.use('/api/movies', movieRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api', movieRoutes);
+app.use('/api', userRoutes);
 
 // Manejo de errores
 const errorMiddleware = require('./middleware/errorMiddleware');
