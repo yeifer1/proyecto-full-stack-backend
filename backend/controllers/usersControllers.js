@@ -83,3 +83,10 @@ exports.deleteUser = async (req, res) => {
     res.status(500).send('Error interno del servidor');
   }
 };
+
+// funcion para generar el JWT
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: '90d'
+  })
+}
