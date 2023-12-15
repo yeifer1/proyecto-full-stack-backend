@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 // Definir el esquema para la colección de películas
 const movieSchema = new mongoose.Schema({
+  user:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: [true, 'el usuario es requerido']
+  },
   title: {
     type: String,
     required: true,
