@@ -1,11 +1,11 @@
-// Middleware de manejo de errores
-function errorMiddleware(err, req, res, next) {
-  console.error(err.stack);
-
-  // Puedes personalizar el manejo de errores aquí
-  // Por ejemplo, puedes verificar el tipo de error y proporcionar una respuesta adecuada
-
-  res.status(500).json({ msg: 'Error interno del servidor' });
+const errorHandler = (err, req, res, next) => {
+  const statusCode = res.statusCode ? res.statusCode : 500
+  res.status(statusCode)
+  res.json({
+    error: err.message,
+    stack: process.env.NODE_ENV === 'production' ? null : err.stack
+  })
 }
-
-module.exports = errorMiddleware;
+module.exports = {
+  errorHandler,
+}

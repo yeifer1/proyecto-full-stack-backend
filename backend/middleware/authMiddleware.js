@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
-
-const User = require('../models/usersModel')
-const protect =  async (req, res, next) => {
+const asyncHandler = require('express-async-handler')
+const User = require('../models/users.Models')
+const protect = asyncHandler( async (req, res, next) => {
   let token
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {
@@ -22,12 +22,5 @@ const protect =  async (req, res, next) => {
     res.status(401)
     throw new Error ('Acceso no autorizado, no se proporciono el token  ')
   }
-}
+})
 module.exports = { protect }
-
-
-
-
-
-
-
