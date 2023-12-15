@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const movieController = require('../controllers/peliculasControllers');
-const { protect } = require('../middleware/auth.Middleware')
+const { protect } = require('../middleware/authMiddleware')
 //const authenticate = require('../middleware/authMiddleware');
 
 // Ruta para crear una nueva película
