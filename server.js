@@ -31,5 +31,5 @@ app.use('/api/users', require('./backend/routes/users.Routes'));
 // Manejador de errores personalizado
 app.use(errorHandler);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Conectado al puerto ${port}`.yellow.bold));
